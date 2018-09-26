@@ -55,6 +55,28 @@ class Create(object):
 
         return list
 
+    # 将假分数转化为带分数
+    def proper_fraction(self, list):
+        num = 0
+        for fract in list:
+            if type(fract) == Fraction:
+                n1 = fract.numerator
+                n2 = fract.denominator
+                if n2 == 1:
+                    num += 1
+                    continue
+                elif n1 > n2:
+                    sub = int(n1/n2)
+                    n1 = n1 % n2
+                    list[num] = '%d%s%d/%d' %(sub, '’', n1,n2)
+            num += 1
+        return list
+
+
+
+
+
+
     # 生成随机数
     def create_number(self, r):
         b = random.randint(1, r)
@@ -71,4 +93,5 @@ class Create(object):
 
 
 n = Create()
-print(n.create_arith(5))
+a = n.create_arith(10)
+print(n.proper_fraction(a))

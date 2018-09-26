@@ -12,8 +12,9 @@ class Arith(object):
         num = 0
         while num < problem_number:
             arith = creat_pro.create_arith(r)
-            file1.write(creat_pro.to_string(arith) + '\n')
-            print(creat_pro.to_string(arith) + '\n')
+
+            file1.write(creat_pro.to_string(creat_pro.proper_fraction(arith)) + '\n')
+            print(creat_pro.to_string(creat_pro.proper_fraction(arith)) + '\n')
             num +=1
 
 
