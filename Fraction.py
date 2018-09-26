@@ -1,4 +1,6 @@
-class Fraction(object):
+from fractions import Fraction
+
+class Fractions(object):
     def __init__(self):
         self.numerator = None
         self.denominator = None
@@ -12,17 +14,5 @@ class Fraction(object):
     def toString(self):
         a = int(self.numerator)
         b = int(self.denominator)
-        if b == 1:
-            return str(a)
-        else:
-            if a > b:
-                c = int(a / b)
-                d = int(a % b)
-                if d == 0:
-                    return str(c)
-                else:
-                    return str(c) + "`" + str(d) + "/" + str(b)
-            elif a == b:
-                return "1"
-            else:
-                return str(a) + "/" + str(b)
+        return str(Fraction(a, b))
+
