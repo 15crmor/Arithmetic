@@ -72,11 +72,6 @@ class Create(object):
             num += 1
         return list
 
-
-
-
-
-
     # 生成随机数
     def create_number(self, r):
         b = random.randint(1, r)
@@ -90,8 +85,3 @@ class Create(object):
         for i in range(len(list)):
              np = np + str(list[i])
         return np
-
-
-n = Create()
-a = n.create_arith(10)
-print(n.proper_fraction(a))

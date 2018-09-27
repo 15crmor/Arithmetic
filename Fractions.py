@@ -12,7 +12,7 @@ class Fractions(object):
         self.denominator = denominator
 
     def toString(self):
-        a = int(self.numerator)
-        b = int(self.denominator)
+        a = self.numerator
+        b = self.denominator
         return str(Fraction(a, b))
 

@@ -1,6 +1,9 @@
 import Fractions
+from fractions import Fraction
 import re
 import operator
+from BinaryTree import BinaryTree
+import Caculation
 
 class Judge(object):
 
@@ -42,6 +45,37 @@ class Judge(object):
                 right.append(operator)
         return right
 
+    def createTree(self, suffix):
+        stacks = []
+        global tree
+        for i in range(0, len(suffix)):
+            tree = BinaryTree()
+            ob = suffix[i]
+            c = Caculation.Caculation()
+            if self.isOperator(ob):
+                t2 = BinaryTree()
+                t1 = BinaryTree()
+                t2 = stacks.pop()
+                t1 = stacks.pop()
+                if self.maxTree(t1, t2):
+                    tree.set_date(ob)
+                    tree.set_left(t1)
+                    tree.set_right(t2)
+                    tree.set_value(c.caulate(ob, t1.value, t2.value))
+                else:
+                    tree.set_date(ob)
+                    tree.set_left(t2)
+                    tree.set_right(t1)
+                    tree.set_value(c.caulate(ob, t1.value, t2.value))
+                stacks.append(tree)
+            else:
+                tree.set_date(ob)
+                tree.set_value(ob)
+                stacks.append(tree)
+        return tree
+
+
+
     def judge(self, tree1, tree2):
         if tree1 is None and tree2 is None:
             return 'empty'
@@ -52,8 +86,6 @@ class Judge(object):
                 if(re.match('\*|\+',tree1.key)):
                     pass
                     #if ((judge(tree1.leftChild,tree2.leftChild)and))
-
-
 
 
 
@@ -86,3 +118,22 @@ class Judge(object):
             return True
         else:
             return False
+
+    def maxTree(self, t1, t2):
+        c = Caculation.Caculation()
+        max = c.max(t1.value, t2.value)
+        if max == 1:
+            return True
+        elif max == 2:
+            return False
+        elif self.priority(t1.data, t2.data):
+            if t1.left == None or t2.left == None:
+                return True
+            max = c.max(t1.left.value, t2.left.value)
+            if max == 1:
+                return True
+            elif max == 2:
+                return False
+            else:
+                return True
+        return False

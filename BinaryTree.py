@@ -1,11 +1,21 @@
 import Fractions
+from fractions import Fraction
 
 class BinaryTree(object):
     def __init__(self):
-        pass
+        self.date = None
+        self.left = None
+        self.right = None
+        self.value = None
 
-    def set_number(self, number):
-        self.number = number
+    def tree(self, date, left, right, value):
+        self.date = date
+        self.left = left
+        self.right = right
+        self.value = value
+
+    def set_date(self, date):
+        self.date = date
 
     def set_left(self, left):
         self.left = left
@@ -14,27 +24,20 @@ class BinaryTree(object):
         self.right = right
 
     def set_value(self, value):
-        self.valut = value
+        self.value = value
 
-    def toString(self, tree):
+    def to_string(self, tree):
         s = ""
-        s = self.outPutTree(tree, s)
+        s = self.out_put_tree(tree, s)
         return s
 
-    def outPutTree(self, tree, s):
+    def out_put_tree(self, tree, s):
         if tree != None:
-            s1 = self.outPutTree(tree.left,s)
-            s2 = self.outPutTree(tree.right,s)
+            s1 = self.out_put_tree(tree.left, s)
+            s2 = self.out_put_tree(tree.right, s)
 
-            if type(tree.number) == Fractions.number:
-                return str(s1) + str(s2) + str(tree.number.toString())
+            if type(tree.date) == Fractions.Fractions:
+                return str(s1) + str(s2) + str(tree.date.toString())
             else:
-                return s
-
-    def createTree(self, exp):
-        stack = []
-        op = ['+', '-', '×', '÷']
-        for i in exp:
-            if i not in op:
-                tree = BinaryTree()
-                stack.append(tree)
+                return str(s1) + str(s2) + str(tree.date)
+        return s
