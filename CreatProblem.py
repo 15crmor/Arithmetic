@@ -11,6 +11,7 @@ class Create(object):
 
     # 生成四则运算
     def create_arith(self, r):
+        x = 0
         list = []
         operator_num = random.randint(1, 3)
         print(operator_num)
@@ -53,6 +54,11 @@ class Create(object):
             list.append(e2.create_operator())
             list.append(e1.create_number(r))
 
+        # for x in range(0,len(list)):
+        #     if list[x] == '-' and list[x-1] < list[x+1]:
+        #         a = list[x-1]
+        #         list[x-1] = list[x+1]
+        #         list[x+1] = a
         return list
 
     # 将假分数转化为带分数
@@ -71,6 +77,19 @@ class Create(object):
                     list[num] = '%d%s%d/%d' %(sub, '’', n1,n2)
             num += 1
         return list
+
+    # 将答案假分数转化为带分数
+    def pop_fracte(self, re):
+        n1 = re.numerator
+        n2 = re.denominator
+        if n2 == 1:
+            return n1
+        elif n1 < n2:
+            return re
+        else:
+            sub = int(n1/n2)
+            n1 = n1 % n2
+            return '%d%s%d/%d' % (sub, '’', n1, n2)
 
     # 生成随机数
     def create_number(self, r):

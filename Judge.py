@@ -47,7 +47,7 @@ class Judge(object):
 
     def createTree(self, suffix):
         stacks = []
-        global tree
+
         for i in range(0, len(suffix)):
             tree = BinaryTree()
             ob = suffix[i]
@@ -69,24 +69,11 @@ class Judge(object):
                     tree.set_value(c.caulate(ob, t1.value, t2.value))
                 stacks.append(tree)
             else:
-                tree.set_date(ob)
                 tree.set_value(ob)
+                tree.set_date(ob)
                 stacks.append(tree)
+            print(stacks)
         return tree
-
-
-
-    def judge(self, tree1, tree2):
-        if tree1 is None and tree2 is None:
-            return 'empty'
-        elif tree1 is not None and tree2 is not None:
-            if tree1.key != tree2.key:
-                return 0
-            else:
-                if(re.match('\*|\+',tree1.key)):
-                    pass
-                    #if ((judge(tree1.leftChild,tree2.leftChild)and))
-
 
 
     def isOperator(self, operator):
@@ -121,13 +108,14 @@ class Judge(object):
 
     def maxTree(self, t1, t2):
         c = Caculation.Caculation()
-        max = c.max(t1.value, t2.value)
+        print(t1.value)
+        max = c.max(t1.value, t2.value)  # 比较两个树value值大小
         if max == 1:
             return True
         elif max == 2:
             return False
-        elif self.priority(t1.data, t2.data):
-            if t1.left == None or t2.left == None:
+        elif self.priority(t1.date, t2.date):  # 如果两个树的value值相等，则比较
+            if t1.left == None or t2.left == None:  # 如果有一个左子树不为空
                 return True
             max = c.max(t1.left.value, t2.left.value)
             if max == 1:

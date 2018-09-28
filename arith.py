@@ -11,18 +11,18 @@ class Arith(object):
         c = Check.Check()
         file1 = open("Exercises.txt", "w")
         file2 = open("Answer.txt", "w")
-        problem_list = []
-        num_list = ['`', '/', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '×', '÷']
         num = 0
         while num < problem_number:
             arith = creat_pro.create_arith(r)
             Ju = Judge.Judge()
             al = Ju.toRPN(arith)
+            print(al)
             string = creat_pro.to_string(creat_pro.proper_fraction(arith))
             ta = Ju.createTree(al)
+            val = str(creat_pro.pop_fracte(ta.value))
             if c.check_rpn(t.to_string(ta)):
                 file1.write("(%d) " % (num+1) + string + '\n')
-                file2.write("(%d) " % (num+1) + str(ta.value) + '\n')
+                file2.write("(%d) " % (num+1) + val + '\n')
                 print(creat_pro.to_string(creat_pro.proper_fraction(arith)) + '\n')
                 num +=1
 

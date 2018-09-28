@@ -35,9 +35,8 @@ class BinaryTree(object):
         if tree != None:
             s1 = self.out_put_tree(tree.left, s)
             s2 = self.out_put_tree(tree.right, s)
-
             if type(tree.date) == Fractions.Fractions:
-                return str(s1) + str(s2) + str(tree.date.toString())
+                return str(s1) + str(s2) + str(tree.date.to_string())
             else:
                 return str(s1) + str(s2) + str(tree.date)
         return s
