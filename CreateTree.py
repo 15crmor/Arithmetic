@@ -7,6 +7,7 @@ import Caculation
 
 class Judge(object):
 
+    # 生成逆波兰式
     def toRPN(self, list):
         right = []
         aStack = []
@@ -45,6 +46,7 @@ class Judge(object):
                 right.append(operator)
         return right
 
+    #  将逆波兰式转换成二叉树并规范化
     def createTree(self, suffix):
         stacks = []
 
@@ -57,31 +59,34 @@ class Judge(object):
                 t1 = BinaryTree()
                 t2 = stacks.pop()
                 t1 = stacks.pop()
-                if self.maxTree(t1, t2):
-                    tree.set_date(ob)
-                    tree.set_left(t1)
-                    tree.set_right(t2)
-                    tree.set_value(c.caulate(ob, t1.value, t2.value))
+                if ob == '-' and t1.value <= t2.value:
+                    return None
                 else:
-                    tree.set_date(ob)
-                    tree.set_left(t2)
-                    tree.set_right(t1)
-                    tree.set_value(c.caulate(ob, t1.value, t2.value))
-                stacks.append(tree)
+                    if self.maxTree(t1, t2):
+                        tree.set_date(ob)
+                        tree.set_left(t1)
+                        tree.set_right(t2)
+                        tree.set_value(c.caulate(ob, t1.value, t2.value))
+                    else:
+                        tree.set_date(ob)
+                        tree.set_left(t2)
+                        tree.set_right(t1)
+                        tree.set_value(c.caulate(ob, t1.value, t2.value))
+                    stacks.append(tree)
             else:
                 tree.set_value(ob)
                 tree.set_date(ob)
                 stacks.append(tree)
-            print(stacks)
         return tree
 
-
+    # 判断是否为符号
     def isOperator(self, operator):
         if operator == "+" or operator == "-" or operator == "×" or operator == "÷" or operator == "(" or operator == ")":
             return True
         else:
             return False
 
+    #  当两颗树value值相等时判定优先级
     def priority(self, operatorout, operatorin):
         m = -1
         n = -1
@@ -106,16 +111,16 @@ class Judge(object):
         else:
             return False
 
+    # 判断左右子树
     def maxTree(self, t1, t2):
         c = Caculation.Caculation()
-        print(t1.value)
         max = c.max(t1.value, t2.value)  # 比较两个树value值大小
         if max == 1:
             return True
         elif max == 2:
             return False
-        elif self.priority(t1.date, t2.date):  # 如果两个树的value值相等，则比较
-            if t1.left == None or t2.left == None:  # 如果有一个左子树不为空
+        elif self.priority(t1.date, t2.date):  # 如果两个树的value值相等，则判定优先级
+            if t1.left == None or t2.left == None:
                 return True
             max = c.max(t1.left.value, t2.left.value)
             if max == 1:

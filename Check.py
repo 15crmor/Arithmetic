@@ -2,17 +2,15 @@ class Check(object):
 
     def __init__(self):
         self.check = []
-        self.repeat_no = 0
 
-    def check_rpn(self,list):
+    #  对二叉树进行判重
+    def check_tree(self, tree):
         if self.check == []:
-            self.check.append(list)
+            self.check.append(tree)
             return True
         else:
             for i in range(len(self.check)):
-                if self.check[i] == list:
-                    self.repeat_no = i
-                    self.check.append(list)
+                if self.check[i] == tree:
                     return False
-        self.check.append(list)
+        self.check.append(tree)
         return True

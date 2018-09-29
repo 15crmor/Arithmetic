@@ -9,12 +9,11 @@ class Create(object):
         operator = ["+", "-", "×", "÷"]
         return random.choice(operator)
 
-    # 生成四则运算
+    # 生成四则运算表达式
     def create_arith(self, r):
         x = 0
         list = []
         operator_num = random.randint(1, 3)
-        print(operator_num)
         e1 = Create()
         e2 = Create()
         if operator_num == 1:
@@ -53,15 +52,9 @@ class Create(object):
             list.append(e1.create_number(r))
             list.append(e2.create_operator())
             list.append(e1.create_number(r))
-
-        # for x in range(0,len(list)):
-        #     if list[x] == '-' and list[x-1] < list[x+1]:
-        #         a = list[x-1]
-        #         list[x-1] = list[x+1]
-        #         list[x+1] = a
         return list
 
-    # 将假分数转化为带分数
+    # 将表达式假分数转化为带分数
     def proper_fraction(self, list):
         num = 0
         for fract in list:
@@ -94,7 +87,7 @@ class Create(object):
     # 生成随机数
     def create_number(self, r):
         b = random.randint(1, r)
-        a = random.randint(1, b * r - 1)
+        a = random.randint(1, b * r)
         n = Fraction(a, b)
         return n
 

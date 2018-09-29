@@ -1,6 +1,7 @@
 import Fractions
 from fractions import Fraction
 
+# 二叉树
 class BinaryTree(object):
     def __init__(self):
         self.date = None
