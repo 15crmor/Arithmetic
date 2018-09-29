@@ -20,6 +20,6 @@ class Compare(object):
                 line += 1
         with open('gread.txt', 'w') as f3:
             f3.write(f"Correct: {str(co)} ({', '.join(str(s) for s in correct if s not in [None])})" + '\n')
-            f3.write(f"Correct: {str(wr)} ({', '.join(str(s) for s in wrong if s not in [None])})" + '\n')
+            f3.write(f"Wrong: {str(wr)} ({', '.join(str(s) for s in wrong if s not in [None])})" + '\n')
         print("文件比较完成")
 
